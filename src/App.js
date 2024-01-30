@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import {App, Tabs, Link, NavRight, Tab, Navbar, Toolbar, Page, f7, View} from 'framework7-react'
+import Home from "./Pages/Home";
+import Settings from "./Pages/Settings";
+import Book from "./Pages/Book";
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default () => {
+  useEffect(()=>{
+    f7.setColorTheme("#ff3b8d")
+  })
+  const f7p = {
+    name: 'Versoku',
+    routes: [{
+      path:'/',
+      component: Home,
+    },{
+      path:'/settings',
+      component: Settings
+    },{
+      path:'/Book/:id',
+      component: Book
+    }
+    ]
+  }
+  return(
+    <App theme='ios' darkMode {...f7p}>
+      <View>
+      </View>
+    </App>
+  )
 }
-
-export default App;
