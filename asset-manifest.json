@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/versoku/static/css/main.7b7cfff1.css",
-    "main.js": "/versoku/static/js/main.3dd27bcc.js",
-    "static/js/787.59db3c7c.chunk.js": "/versoku/static/js/787.59db3c7c.chunk.js",
-    "index.html": "/versoku/index.html",
-    "main.7b7cfff1.css.map": "/versoku/static/css/main.7b7cfff1.css.map",
-    "main.3dd27bcc.js.map": "/versoku/static/js/main.3dd27bcc.js.map",
-    "787.59db3c7c.chunk.js.map": "/versoku/static/js/787.59db3c7c.chunk.js.map"
+    "main.css": "/Versoku/static/css/main.7b7cfff1.css",
+    "main.js": "/Versoku/static/js/main.181d5894.js",
+    "static/js/787.59db3c7c.chunk.js": "/Versoku/static/js/787.59db3c7c.chunk.js",
+    "index.html": "/Versoku/index.html",
+    "main.7b7cfff1.css.map": "/Versoku/static/css/main.7b7cfff1.css.map",
+    "main.181d5894.js.map": "/Versoku/static/js/main.181d5894.js.map",
+    "787.59db3c7c.chunk.js.map": "/Versoku/static/js/787.59db3c7c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7b7cfff1.css",
-    "static/js/main.3dd27bcc.js"
+    "static/js/main.181d5894.js"
   ]
 }
