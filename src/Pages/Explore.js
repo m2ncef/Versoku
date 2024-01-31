@@ -3,7 +3,7 @@ import React,{ useEffect, useRef, useState } from "react";
 
 export default ()=>{
     const [books, setBooks] = useState([])
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(2)
     const [sort, setSort] = useState('popular')
     const ref = useRef()
     useEffect(()=>{

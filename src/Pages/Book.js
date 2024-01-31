@@ -1,10 +1,14 @@
-import { Link, NavLeft, Navbar, Page, PageContent, Sheet, View } from "framework7-react";
-import { useEffect, useState } from "react";
+import { Link, f7, Navbar, Page, PageContent, Sheet } from "framework7-react";
+import { useEffect, useState, useRef } from "react";
 import Loader from "../Components/Loader";
+import copy from 'copy-text-to-clipboard'
 
 export default () => {
     const [title, setTitle] = useState("")
     const [isSheetOpen, setIsSheetOpen] = useState(false)
+    const libraryToast = useRef(null);
+    const copyToast = useRef(null);
+
     function toggleTextArea(){
         var targetEle = document.querySelector('.BookDesc p');
         if(targetEle.style.height === ''){
@@ -14,11 +18,30 @@ export default () => {
     const closeSheet = () => {
         setIsSheetOpen(false)
     }
+    const handleCopy = () =>{
+        copy(window.location.href)
+        if (!copyToast.current) {
+            copyToast.current = f7.toast.create({
+              text: "Link Copied ✅",
+              position: 'center',
+              closeTimeout: 2000,
+            });
+          }
+          copyToast.current.open();
+    }
     function SaveToLibrary(x){
         var a = [];
         a = JSON.parse(sessionStorage.getItem('Library')) || [];
         a.push(x);
         sessionStorage.setItem('Library', JSON.stringify(a));
+        if (!libraryToast.current) {
+            libraryToast.current = f7.toast.create({
+              text: "Added To Library ✅",
+              position: 'center',
+              closeTimeout: 3000,
+            });
+          }
+          libraryToast.current.open();
     }
     useEffect(()=>{
         var id = window.location.pathname.replace(/\D/g,'')
@@ -54,6 +77,7 @@ export default () => {
                             <h4></h4>
                             <div style={{display:'flex', flexDirection:'row', alignItems:'stretch'}}>
                                 <Link iconIos="f7:bookmark_fill" onClick={()=>{SaveToLibrary(sessionStorage.getItem("ReadingNow"))}}></Link>
+                                <Link iconIos="f7:square_arrow_up" onClick={handleCopy}>&nbsp;Share</Link>
                             </div>
                         </div>
                     </div>

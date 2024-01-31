@@ -8,6 +8,7 @@ import { useEffect } from "react";
 export default ()=>{
     return(
     <>
+    <Loader/>
       <Page>
           <Navbar large title="Versoku">
             <NavRight>

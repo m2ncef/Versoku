@@ -21,9 +21,9 @@ export default () => {
             <Block>
                 <BlockTitle>Advanced</BlockTitle>
                 <List style={{ color: 'var(--f7-theme-color)' }} simpleList strongIos dividersIos insetIos>
-                    <ListItem title={'Clear Library'}/>
+                    <ListItem title={'Clear Library'} onClick={()=>{sessionStorage.clear()}}/>
                     <ListItem title={'Clear Network Cache'}/>
-                    <ListItem title={'Clear Read History'}/>
+                    <ListItem title={'Clear Read History'} onClick={alert("soon")}/>
                     <ListItem style={{color:'red'}} title={'Reset'}/>
                 <BlockFooter>If you need help, feel free to <Link external target='_blank' href='https://instagram.com/m2ncef'>dm me</Link></BlockFooter>
                 </List>

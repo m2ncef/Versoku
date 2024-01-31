@@ -160,16 +160,22 @@
   border-radius: 2vh;
   flex-direction: row;
   display: flex;
-  margin: 1vh 0vh;
+  margin: 1.4vh 0vh;
   padding: 2vh;
   align-items: center;
   justify-content: space-between;
 }
 .Book img {
-  height: 30vw;
+  height: 26vw;
   width: 20vw;
   border-radius: 1vh;
   margin: 0vh 2vh 0vh 0vh;
+}
+.Book a {
+  background-color: rgba(255, 59, 141, 0.2);
+  padding: .7vh;
+  border-radius: 5px;
+  margin: 0vh .5vh;
 }
 .Library, .search {
   margin: 2vh;
@@ -177,6 +183,9 @@
 .Book div h6 {
   color: gray;
   font-size: smaller;
+}
+.Book div h3 {
+  font-size: 15px;
 }
 #iframeID {
   width: 90vw;
@@ -187,4 +196,22 @@
   overflow: auto;
   display: block;
   background-color: #444444;
+}
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border-bottom-left-radius: 1vh;
+}
+.searchBar input {
+  flex-basis: 80%;
+  padding: 2vh 2vh;
+  border: none;
+  background-color: #0f0f0f;
+}
+.searchBar button {
+  flex-basis: 20%;
+  border: none;
+  background-color: rgba(255, 59, 141, 0.2);
+  color: rgba(255, 59, 141);
 }
