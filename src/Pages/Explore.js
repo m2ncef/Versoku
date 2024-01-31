@@ -7,6 +7,7 @@ export default ()=>{
     const [sort, setSort] = useState('popular')
     const ref = useRef()
     useEffect(()=>{
+        document.title = "Versoku"
         fetch(`https://gutendex.com/books/?sort=${sort}&next&page=${page}`)
         .then(res=>res.json())
         .then(data=>{

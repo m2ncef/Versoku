@@ -3,6 +3,7 @@ import Search from "./Search";
 import Library from "./Library";
 import Explore from "./Explore";
 import Loader from "../Components/Loader";
+import { useEffect } from "react";
 
 export default ()=>{
     return(
