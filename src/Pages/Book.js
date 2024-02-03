@@ -5,6 +5,8 @@ import copy from 'copy-text-to-clipboard'
 
 export default () => {
     const [title, setTitle] = useState("")
+    const [OL, setOL] = useState("")
+    const [readLink, setreadLink] = useState("")
     const [isSheetOpen, setIsSheetOpen] = useState(false)
     const libraryToast = useRef(null);
     const copyToast = useRef(null);
@@ -44,23 +46,34 @@ export default () => {
           libraryToast.current.open();
     }
     useEffect(()=>{
-        var id = window.location.pathname.replace(/\D/g,'')
-        fetch(`https://gutendex.com/books/?ids=${id}`)
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-            document.title = document.title + ' - ' + data.results[0].title
-            setTitle(data.results[0].title)
-            document.querySelector(".BookInfo img").src = data.results[0].formats['image/jpeg']
-            document.querySelector(".BookInfo div h2").innerHTML = data.results[0].title
-            sessionStorage.setItem("ReadingNow", data.results[0].id)
-            document.querySelector(".BookDesc p").innerHTML = 'Cant find a good books descriptions api for the moment lol 😛, ill do this asap just be patient yall aight??'
-            for(const i in data.results[0].bookshelves){
-                document.querySelector(".BookDesc div").innerHTML += `<span>${data.results[0].bookshelves[i]}</span>`
+        async function fetchData(id) {
+            try {
+                const response1 = await fetch(`https://gutendex.com/books/?ids=${id}`);
+                const data1 = await response1.json();
+                document.title = document.title + ' - ' + data1.results[0].title;
+                setTitle(data1.results[0].title);
+                const bookTitle = data1.results[0].title;
+                document.querySelector(".BookInfo img").src = data1.results[0].formats['image/jpeg'];
+                document.querySelector(".BookInfo div h2").innerHTML = data1.results[0].title;
+                sessionStorage.setItem("ReadingNow", data1.results[0].id);
+                document.querySelector(".BookDesc p").innerHTML = 'Fetching Data...';
+                for (const i in data1.results[0].bookshelves) {
+                    document.querySelector(".BookDesc div").innerHTML += `<span>${data1.results[0].bookshelves[i]}</span>`;
+                }
+                document.querySelector(".BookInfo div h4").innerHTML = data1.results[0].authors[0].name;
+                setreadLink(data1.results[0].formats['text/html']);
+                const response2 = await fetch(`https://openlibrary.org/search.json?q=${bookTitle}&limit=1`);
+                const data2 = await response2.json();
+                const OL = data2.docs[0].key;
+                setOL(OL);
+                const response3 = await fetch(`https://openlibrary.org${OL}.json`);
+                const data3 = await response3.json();
+                document.querySelector(".BookDesc p").innerHTML = data3.description;
+            } catch (error) {
+                console.log(error);
             }
-            document.querySelector(".BookInfo div h4").innerHTML = data.results[0].authors[0].name
-            document.querySelector("#iframeID").src = data.results[0].formats['text/html']
-        })
+        }
+        fetchData(window.location.pathname.replace(/\D/g,''));        
     }, [])
     return(
         <>
@@ -86,7 +99,9 @@ export default () => {
                         <div></div>
                     </div>
                     <div className="BookRead">
-                        <Link onClick={()=>{setIsSheetOpen(true)}}>Start Reading</Link>
+                        <Link onClick={()=>{
+                            window.open(readLink, '_blank')
+                        }}>Start Reading</Link>
                     </div>
                 </div>
                 <Sheet push backdrop style={{height:'100vw',textAlign:'center'}} opened={isSheetOpen} onSheetClose={closeSheet}>

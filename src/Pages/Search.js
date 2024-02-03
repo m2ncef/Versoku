@@ -26,9 +26,6 @@ export default ()=>{
       };
     fetchData();
     }, [searchQuery]);
-    useEffect(() => {
-      console.log(searchResults);
-    }, [searchResults]);
     const BookCard = (props) => {
         return(
         <div className="BookCard" onClick={()=>{

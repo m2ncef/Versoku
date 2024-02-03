@@ -34,7 +34,6 @@ export default ()=>{
     }
     const handleSort = (e) => {
         setSort(e.target.value)
-        console.log(e.target.value)
     }
     return(
         <Tab tabActive id={'Explore'}>
